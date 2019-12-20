@@ -29,8 +29,8 @@ var generateObjArray = function(comments,description) {
         objArray[i] = {
             url: "photos/" + (i + 1) + ".jpg",
             likes: Math.floor(Math.random()*185) + 15,
-            comments: comments[parseInt(Math.floor(Math.random()*7))],
-            description: description[Math.floor(Math.random()*6)]
+            comments: comments[Math.floor(Math.random()*6)],
+            description: description[Math.floor(Math.random()*5)],
         };
     }
     return objArray;
@@ -42,7 +42,7 @@ var renderPicture = function(data){
     var pictureElement = pictureTemplate.cloneNode(true);
 
     pictureElement.querySelector('img').src = data['url'];
-    pictureElement.querySelector('.picture__comments').textContent = data['comments'];
+    pictureElement.querySelector('.picture__comments').textContent = data['comments'].substr(0,5) + "...";
     pictureElement.querySelector('.picture__likes').textContent = data['likes'];
 
     return pictureElement;
@@ -83,4 +83,8 @@ var generateBigPicture = function(genArr, comments){
     bigPicture.classList.remove('hidden');
 };
 
-generateBigPicture(generatedArray[Math.floor(Math.random()*24)],comments);
+document.querySelector('#upload-file').addEventListener('change', function () {
+   document.querySelector('.img-upload__overlay').classList.remove('hidden');
+});
+
+//generateBigPicture(generatedArray[Math.floor(Math.random()*24)],comments);
