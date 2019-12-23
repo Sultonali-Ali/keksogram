@@ -3,38 +3,7 @@
 
 
 
-//Получения шаблона комментарии
-var commentTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
-var generateComment = function(comments){
-    var commentElement = commentTemplate.cloneNode(true);
 
-    commentElement.querySelector('.social__picture').src = 'img/avatar-' + (Math.floor(Math.random()*6) + 1) + '.svg';
-    commentElement.querySelector('.social__text').textContent = comments[Math.floor(Math.random()*6)];
-
-    return commentElement;
-};
-
-var bigPicture = document.querySelector('.big-picture');
-var generateBigPicture = function(genArr, comments){
-
-
-    bigPicture.querySelector('.big-picture__img img').src = genArr.querySelector('.picture__img').getAttribute('src');
-    bigPicture.querySelector('.likes-count').textContent = genArr.querySelector('.picture__likes').textContent;
-    bigPicture.querySelector('.comments-count').textContent = genArr.querySelector('.picture__comments').textContent;
-    bigPicture.querySelector('.social__caption').textContent = description[Math.floor(Math.random()*5)];
-    // bigPicture.querySelector('.big-picture__img img').src = genArr['url'];
-    // bigPicture.querySelector('.likes-count').textContent = genArr['likes'];
-    // bigPicture.querySelector('.comments-count').textContent = genArr['comments'].length;
-    // bigPicture.querySelector('.social__caption').textContent = genArr['description'];
-    // var commentFragment = document.createDocumentFragment();
-    // for (var i = 0; i < 3;i++){
-    //     commentFragment.appendChild(generateComment(comments));
-    // }
-    // bigPicture.querySelector('.social__comments').appendChild(commentFragment);
-
-    openPopup();
-
-};
 
 //Обработка событий открытия и закрытия формы редактирования изображения
 var imgCorrect = document.querySelector('.img-upload__overlay');
@@ -57,23 +26,7 @@ var closePopupUpload = function(evt){
     document.removeEventListener('keydown',onPopupUploadEscPress);
 };
 
-//модальные окны для просмотра изображение
-var onPopupEscPress = function(evt){
 
-    if (evt.keyCode === 27){
-        closePopup();
-    }
-};
-
-var openPopup = function(evt){
-    bigPicture.classList.remove('hidden');
-    document.addEventListener('keydown',onPopupEscPress);
-};
-
-var closePopup = function(evt){
-    bigPicture.classList.add('hidden');
-    document.removeEventListener('keydown',onPopupEscPress);
-};
 
 document.querySelector('#upload-file').addEventListener('change', function () {
    openPopupUpload();
@@ -82,8 +35,6 @@ document.querySelector('#upload-file').addEventListener('change', function () {
 imgCorrect.querySelector('.img-upload__cancel').addEventListener('click', function (evt) {
     closePopupUpload();
 });
-
-//generateBigPicture(generatedArray[Math.floor(Math.random()*24)],comments);
 
 
 //определение глубину эффекта и его применения к изображение
@@ -144,17 +95,7 @@ document.querySelector('.img-upload__effects').addEventListener('click',function
     }
 });
 
-var picture = document.querySelectorAll('.picture');
-for (var j = 0; j < picture.length;j++){
-    picture[j].addEventListener('click',function (evt) {
-        //alert(evt.currentTarget.tagName);
-        generateBigPicture(evt.currentTarget,comments);
-    });
-}
 
-bigPicture.querySelector('.big-picture__cancel').addEventListener('click', function () {
-    closePopup();
-});
 
 //Валидация хэш тега
 

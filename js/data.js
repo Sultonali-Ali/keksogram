@@ -1,3 +1,4 @@
+//модуль, который создаёт данные
 (function () {
     var comments = [
         "Всё отлично!",
@@ -35,4 +36,6 @@
         }
         return objArray;
     };
+    window.data = generateObjArray(comments,description);
+
 })();

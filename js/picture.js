@@ -1,8 +1,8 @@
+//модуль для отрисовки миниатюры;
 (function () {
-    var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-
-    //фукнция отрисовке изоражения
-    var renderPicture = function(data){
+    //функция отрисовке изоражения
+    window.picture = function(data){
+        var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
         var pictureElement = pictureTemplate.cloneNode(true);
 
         pictureElement.querySelector('img').src = data['url'];
@@ -12,12 +12,4 @@
         return pictureElement;
     };
 
-    var generatedArray = generateObjArray(comments,description);
-    var fragment = document.createDocumentFragment();
-
-    for (var i = 0; i < generatedArray.length;i++){
-        fragment.appendChild(renderPicture(generatedArray[i]));
-    }
-
-    document.querySelector('.pictures').appendChild(fragment);
 })();
