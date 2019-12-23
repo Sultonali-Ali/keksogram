@@ -1,3 +1,4 @@
+'use strict';
 //модуль, который работает с галереей изображений
 (function () {
     var generatedArray = window.data;

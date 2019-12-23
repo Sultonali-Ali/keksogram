@@ -1,3 +1,4 @@
+'use strict';
 //модуль, который создаёт данные
 (function () {
     var comments = [
