@@ -1,5 +1,26 @@
 
 (function () {
+
+    var effectNone = document.querySelector('#effect-none');
+    if (effectNone.checked){
+        document.querySelector('.effect-level').classList.add('visually-hidden');
+    };
+
+    document.querySelector('.effects__list').addEventListener('click',function () {
+
+        if (effectNone.checked){
+            console.log('checked');
+            if (!document.querySelector('.effect-level').classList.contains('visually-hidden')) {
+                document.querySelector('.effect-level').classList.add('visually-hidden');
+            }
+        } else {
+            console.log('unchecked');
+            if (document.querySelector('.effect-level').classList.contains('visually-hidden')) {
+                document.querySelector('.effect-level').classList.remove('visually-hidden');
+            }
+        }
+    });
+
     //определение глубину эффекта и его применения к изображение
     var applyEffect = function(node,effectNumber,effectValue){
         switch (effectNumber) {
@@ -10,6 +31,8 @@
             case 1: {
                 node.style = " -webkit-filter: grayscale(" + (effectValue / 100) + ");" +
                     "         filter: grayscale(" + (effectValue / 100) + ");";
+
+                document.querySelector('.effect-level').classList.add('visually-hidden');
                 break;
             }
             case 2: {
@@ -23,32 +46,21 @@
                 break;
             }
             case 4: {
-                node.style = " -webkit-filter: blur(" + (effectValue / 10) + "px);" +
-                    "         filter: blur(" + (effectValue / 10) + "px);";
+                node.style = " -webkit-filter: blur(" + Math.floor(effectValue / 33) + "px);" +
+                    "         filter: blur(" + Math.floor(effectValue / 33) + "px);";
                 break;
             }
             case 5: {
-                node.style = " -webkit-filter: brightness(" + (effectValue / 10) + ");" +
-                    "         filter: brightness(" + (effectValue / 10) + ");";
+                node.style = " -webkit-filter: brightness(" + Math.floor(effectValue / 33) + ");" +
+                    "         filter: brightness(" + Math.floor(effectValue / 33) + ");";
                 break;
             }
 
         }
     };
 
-    // var inputRange = document.querySelector('.effect-level__value');
+
     var imgUploadPreview = document.querySelector('.img-upload__preview');
-    // inputRange.addEventListener('change', function () {
-    //
-    //     var effects = document.querySelectorAll('.effects__radio');
-    //
-    //     for (var i = 0;i < effects.length;i++){
-    //         if(effects[i].checked == true){
-    //             applyEffect(imgUploadPreview,i,inputRange.value);
-    //         }
-    //     }
-    //
-    // });
 
 
     var effectLevelPin = document.querySelector('.effect-level__pin');
@@ -85,6 +97,16 @@
            }
 
            effectLevelDepth.style.width = effectLevelPin.style.left;
+           var effectValue = parseInt(effectLevelPin.style.left) * 100 / 450;
+
+           var effects = document.querySelectorAll('.effects__radio');
+
+           for (var i = 0;i < effects.length;i++){
+               if(effects[i].checked == true){
+                   applyEffect(imgUploadPreview,i,effectValue);
+               }
+           }
+
        };
 
        var onMouseUp = function (upEvt) {
