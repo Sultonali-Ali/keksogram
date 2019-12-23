@@ -572,8 +572,8 @@ main {
 }
 
 .effect-level__value {
-  /*display: none;*/
-  width: 400px;
+  display: none;
+  /*width: 400px;*/
 }
 
 .effect-level__line {
