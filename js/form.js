@@ -88,6 +88,14 @@
         }
     });
 
+    var form = document.querySelector('#upload-select-image');
+    form.addEventListener('submit', function (evt) {
+        window.upload(new FormData(form),function (response) {
+
+        });
+        //evt.preventDefault();
+    });
+
     //Запрешаем закрытия окна при активном input и textarea
     hashtags.addEventListener('focusin',function () {
         document.removeEventListener('keydown',onPopupUploadEscPress);
