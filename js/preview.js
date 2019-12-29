@@ -15,20 +15,23 @@
 
     var bigPicture = document.querySelector('.big-picture');
 
-    window.preview = function(id){
+    window.preview = function(id,data){
         id = parseInt(id);
         // var data = window.data;
         // console.log(data.length);
-        var comments = window.data[id]['comments'];
-        bigPicture.querySelector('.big-picture__img img').src = window.data[id]['url'];
-        bigPicture.querySelector('.likes-count').textContent = window.data[id]['likes'];
+        var comments = null;
+        comments = data[id]['comments'];
+
+        bigPicture.querySelector('.big-picture__img img').src = data[id]['url'];
+        bigPicture.querySelector('.likes-count').textContent = data[id]['likes'];
         bigPicture.querySelector('.comments-count').textContent = comments.length;
-        bigPicture.querySelector('.social__caption').textContent = window.data[id]['description'];
+        bigPicture.querySelector('.social__caption').textContent = data[id]['description'];
 
         var commentFragment = document.createDocumentFragment();
         for (var i = 0; i < comments.length;i++){
             commentFragment.appendChild(generateComment(comments[i]));
         }
+        bigPicture.querySelector('.social__comments').innerHTML = '';
         bigPicture.querySelector('.social__comments').appendChild(commentFragment);
 
         openPopup();

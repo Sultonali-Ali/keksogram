@@ -3,7 +3,7 @@
 (function () {
 
    window.gallery = function(){
-       var generatedArray = window.data;
+       var generatedArray = window.data.slice();
        var fragment = document.createDocumentFragment();
 
        for (var i = 0; i < generatedArray.length;i++){
@@ -18,7 +18,7 @@
        for (var j = 0; j < picture.length;j++){
            picture[j].addEventListener('click',function (evt) {
                //alert(evt.currentTarget.tagName);
-               window.preview(evt.currentTarget.querySelector('#forGeneratePreview').textContent);
+               window.preview(evt.currentTarget.querySelector('#forGeneratePreview').textContent,generatedArray);
            });
        }
    };

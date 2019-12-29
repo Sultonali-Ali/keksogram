@@ -5,6 +5,7 @@
     var successHandler = function (data){
         window.data = data;
         window.gallery();
+        document.querySelector('.img-filters').classList.remove('img-filters--inactive');
     };
 
     var errorHandler = function (errorMessage) {
