@@ -9,12 +9,12 @@
     document.querySelector('.effects__list').addEventListener('click',function () {
 
         if (effectNone.checked){
-            console.log(effectNone.checked);
+            
             if (!document.querySelector('.effect-level').classList.contains('visually-hidden')) {
                 document.querySelector('.effect-level').classList.add('visually-hidden');
             }
         } else {
-            console.log(effectNone.checked);
+            
             if (document.querySelector('.effect-level').classList.contains('visually-hidden')) {
                 document.querySelector('.effect-level').classList.remove('visually-hidden');
             }

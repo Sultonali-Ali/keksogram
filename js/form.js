@@ -90,6 +90,7 @@
 
     var form = document.querySelector('#upload-select-image');
     form.addEventListener('submit', function (evt) {
+        console.log('hello');
         window.upload(new FormData(form),function (response) {
 
         });

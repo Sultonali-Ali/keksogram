@@ -35,6 +35,7 @@
 
         var xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
+        console.log('hello');
 
         xhr.addEventListener('load',function () {
             onSuccess(xhr.response);
